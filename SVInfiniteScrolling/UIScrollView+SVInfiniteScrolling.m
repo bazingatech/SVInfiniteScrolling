@@ -149,7 +149,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
             double delayInSeconds = 0.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                self.contentOffset = CGPointMake(0, 0);
+                
                 objc_setAssociatedObject(self, &kSVInfiniteScrollingUpdatingKey, @(NO), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             });
         }
