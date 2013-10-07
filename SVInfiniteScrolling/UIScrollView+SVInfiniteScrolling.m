@@ -150,6 +150,13 @@ UIEdgeInsets scrollViewOriginalContentInsets;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 
+                // need to set content offset to top origin if position is top
+                if (view.position == SVInfiniteScrollingPositionTop) {
+                    
+                    self.contentOffset = CGPointMake(0, 0);
+                    
+                }
+                
                 objc_setAssociatedObject(self, &kSVInfiniteScrollingUpdatingKey, @(NO), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             });
         }
