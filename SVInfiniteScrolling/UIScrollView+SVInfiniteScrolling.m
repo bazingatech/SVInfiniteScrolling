@@ -285,7 +285,8 @@ static const CGFloat kAnimationDuration = 0.3f;
         BOOL isUpdating = [updating boolValue];
         
         if (self.position == SVInfiniteScrollingPositionTop){
-            scrollOffsetThreshold = 0;
+            scrollOffsetThreshold = self.frame.origin.y - self.originalTopInset;
+            
             if(!self.scrollView.isDragging && self.state == SVInfiniteScrollingStateTriggered)
                 self.state = SVInfiniteScrollingStateLoading;
             else if(contentOffset.y < scrollOffsetThreshold && self.state == SVInfiniteScrollingStateStopped && !isUpdating)
@@ -395,7 +396,7 @@ static const CGFloat kAnimationDuration = 0.3f;
                                               delay:0
                                             options:0
                                          animations:^{
-                                             self.scrollView.contentOffset = CGPointMake(0, self.scrollView.contentOffset.y - SVInfiniteScrollingViewHeight);
+                                             self.scrollView.contentOffset = CGPointMake(0, -self.originalTopInset);
                                          }
                                          completion:NULL];
                     }
